@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+
+### VS Code ###
+.vscode/
+
+### Claude ###
+.claude
+
+### ENV ###
+.env
+
+### detection/ — artefatos gerados por train.py (reproduzíveis) ###
+detection/models/z_threshold.json
