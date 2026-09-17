@@ -11,15 +11,17 @@ Rodam em ordem alfabética na primeira inicialização do container
 
 | Arquivo local | Origem em `delta-app-ofc/delta-sql-database` |
 |---|---|
-| `01-schema.sql` | `script-schema.sql` (cria as 12 tabelas) |
+| `01-schema.sql` | `script-schema.sql` (cria as tabelas) |
 | `02-fn_get_property_classification.sql` | `functions/fn_get_property_classification.sql` |
-| `03-dataload.sql` | `script-dataload.sql` (~200 usuários e dados verossímeis) |
+| `03-fn_get_property_classification_group.sql` | `functions/fn_get_property_classification_group.sql` |
+| `04-dataload.sql` | `script-dataload.sql` (~200 usuários e dados verossímeis) |
 
-O motor de detecção só usa `tb_user_property`/`tb_property.classification`
-(via `fn_get_property_classification`), mas o schema precisa das 12 tabelas
-inteiras por causa das foreign keys. Cópia feita a partir do commit `35becd9`
-do `delta-sql-database`. O schema real continua sendo mantido lá — se ele
-mudar, estas cópias precisam ser re-sincronizadas (não edite-as à mão).
+O motor de detecção usa `tb_user_property`/`tb_property.classification_id`
+(via `fn_get_property_classification_group`, que devolve o grupo
+RESIDENCIAL/COMERCIAL, não a categoria específica), mas o schema precisa das
+tabelas inteiras por causa das foreign keys. O schema real continua sendo
+mantido no `delta-sql-database` — se ele mudar, estas cópias precisam ser
+re-sincronizadas (não edite-as à mão).
 
 ## `mongo-init/seed.js` — copiado do `delta-artificial-intelligence`
 
