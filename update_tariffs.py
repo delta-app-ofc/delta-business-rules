@@ -1,5 +1,5 @@
 """Atualiza tb_region_rate (região x categoria) a partir de um JSON anual
-de tarifas — ver tariffs/README.md para a fonte e a metodologia dos valores.
+de tarifas — ver tariffs/TARIFAS.md para a fonte e a metodologia dos valores.
 
 Dry-run por padrão (só mostra o que mudaria); passe --apply para gravar de
 fato, via sp_change_region_rate.
