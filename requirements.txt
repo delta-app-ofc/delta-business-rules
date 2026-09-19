@@ -1,0 +1,4 @@
+pymongo
+dnspython
+psycopg2-binary
+python-dotenv
