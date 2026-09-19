@@ -58,7 +58,7 @@ def get_property_classification(user_id: int) -> str | None:
     conn = get_conn()
     cur = conn.cursor()
     try:
-        cur.execute("SELECT fn_get_property_classification(%s);", (property_id,))
+        cur.execute("SELECT fn_get_property_classification_group(%s);", (property_id,))
         row = cur.fetchone()
         return str(row[0]) if row is not None and row[0] is not None else None
     finally:

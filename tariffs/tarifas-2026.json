@@ -1,0 +1,67 @@
+{
+  "fonte": {
+    "descricao": "Tarifa de água (R$/m³), faixa de consumo 21-50 m³, vigente desde 01/01/2026. ARSESP, Nota Técnica do 1º Reajuste Tarifário da Sabesp (URAE-1 Sudeste), Anexo I - Tabelas Tarifárias.",
+    "nota_tecnica_urae1_sudeste": "https://www.arsesp.sp.gov.br/Documentosgerais/NT_1__REAJUSTE_TARIFARIO_DA_SABESP__Tarifa_Aplicacao___URAE1___assinado.pdf",
+    "tabela_geral_sabesp": "http://www.arsesp.sp.gov.br/ArquivosRegulamentacao/Tarifas/Saneamento/tabela%20de%20tarifas-sabesp-geral.pdf",
+    "vigencia": "2026-01-01",
+    "coluna": "água",
+    "faixa_m3": "21 a 50"
+  },
+  "regioes": {
+    "GRANDE_SP": {
+      "tabela_fonte": "Tabela 1 - Diretoria de Manutenção e Operação (GT-O): unidades OC/OL/OO/ON/OS + Guararema e Santa Isabel",
+      "RESIDENCIAL_NORMAL": 15.95,
+      "RESIDENCIAL_SOCIAL": 9.45,
+      "RESIDENCIAL_FAVELA": 7.39,
+      "RESIDENCIAL_ESPECIAL": 15.95,
+      "COMERCIAL_NORMAL_INDUSTRIAL": 30.57,
+      "COMERCIAL_ESPECIAL": 30.57,
+      "COMERCIAL_ENTIDADE_ASSISTENCIA_SOCIAL": 15.34,
+      "PUBLICA_COM_CONTRATO": 22.99
+    },
+    "LINS": {
+      "tabela_fonte": "Tabela 10 - Município de Lins - SP",
+      "RESIDENCIAL_NORMAL": 6.95,
+      "RESIDENCIAL_SOCIAL": 4.53,
+      "RESIDENCIAL_FAVELA": 4.26,
+      "RESIDENCIAL_ESPECIAL": 5.55,
+      "COMERCIAL_NORMAL_INDUSTRIAL": 12.54,
+      "COMERCIAL_ESPECIAL": 12.54,
+      "COMERCIAL_ENTIDADE_ASSISTENCIA_SOCIAL": 6.33,
+      "PUBLICA_COM_CONTRATO": 9.42
+    },
+    "PRESIDENTE_PRUDENTE": {
+      "tabela_fonte": "Tabela 5 (Diretoria de Manutenção e Operação - GT Interior) + Tabela 8 (Residencial/Comercial Especial, município de Presidente Prudente)",
+      "RESIDENCIAL_NORMAL": 8.74,
+      "RESIDENCIAL_SOCIAL": 5.21,
+      "RESIDENCIAL_FAVELA": 7.39,
+      "RESIDENCIAL_ESPECIAL": 8.74,
+      "COMERCIAL_NORMAL_INDUSTRIAL": 15.68,
+      "COMERCIAL_ESPECIAL": 15.68,
+      "COMERCIAL_ENTIDADE_ASSISTENCIA_SOCIAL": 7.90,
+      "PUBLICA_COM_CONTRATO": 11.82
+    },
+    "ADAMANTINA_PIRAPOZINHO": {
+      "tabela_fonte": "Tabela 5 (Diretoria de Manutenção e Operação - GT Interior) + Tabela 7 (Comercial Especial, municípios de Adamantina e Pirapozinho)",
+      "RESIDENCIAL_NORMAL": 8.74,
+      "RESIDENCIAL_SOCIAL": 5.21,
+      "RESIDENCIAL_FAVELA": 7.39,
+      "RESIDENCIAL_ESPECIAL": 8.74,
+      "COMERCIAL_NORMAL_INDUSTRIAL": 15.68,
+      "COMERCIAL_ESPECIAL": 15.68,
+      "COMERCIAL_ENTIDADE_ASSISTENCIA_SOCIAL": 7.90,
+      "PUBLICA_COM_CONTRATO": 11.82
+    },
+    "BRAGANCA_PAULISTA": {
+      "tabela_fonte": "Tabela 2 - Diretoria Metropolitana (GT-O): Bragança Paulista, Joanópolis, Nazaré Paulista, Pedra Bela, Pinhalzinho, Piracaia, Socorro, Vargem",
+      "RESIDENCIAL_NORMAL": 8.74,
+      "RESIDENCIAL_SOCIAL": 5.21,
+      "RESIDENCIAL_FAVELA": 7.39,
+      "RESIDENCIAL_ESPECIAL": 8.74,
+      "COMERCIAL_NORMAL_INDUSTRIAL": 15.68,
+      "COMERCIAL_ESPECIAL": 15.68,
+      "COMERCIAL_ENTIDADE_ASSISTENCIA_SOCIAL": 7.90,
+      "PUBLICA_COM_CONTRATO": 11.82
+    }
+  }
+}
