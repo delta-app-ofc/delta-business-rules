@@ -11,15 +11,7 @@ Este README é incremental: cada regra de negócio nova ganha sua própria seç�
 
 ## Ambiente local de desenvolvimento
 
-```bash
-docker compose -f docker-compose.dev.yml up -d
-docker compose -f docker-compose.dev.yml ps   # espera ficar "healthy"
-cp .env.example .env
-pip install -r requirements.txt -r requirements-dev.txt
-```
-
-Detalhe de origem de cada arquivo de bootstrap (Postgres/Mongo) em
-[`db/README.md`](db/README.md).
+Consulte [DOCKER-HELP.md](DOCKER-HELP.md) para usar o ambiente Docker local.
 
 ## Testes
 

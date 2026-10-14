@@ -2,20 +2,20 @@
 # Uso:
 #   docker compose -f docker-compose.dev.yml up -d
 #   python -m pytest -q
-#   docker compose -f docker-compose.dev.yml down -v
+#   docker compose -f docker-compose.dev.yml down
 
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: delta_business_rules_postgres_dev
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
+      - "127.0.0.1:${POSTGRES_HOST_PORT:-5435}:5432"
     volumes:
       - ./db/postgres-init:/docker-entrypoint-initdb.d:ro
+      - postgres-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
       interval: 3s
@@ -24,17 +24,16 @@ services:
 
   mongo:
     image: mongo:7
-    container_name: delta_business_rules_mongo_dev
     # --replSet: necessário para MongoDB Change Streams, usados pelo motor de
     # detecção de vazamento (detection/watcher.py) para reagir quase em tempo
     # real a novas janelas de consumo. Um replica set de 1 nó já basta em dev.
     command: ["--replSet", "rs0", "--bind_ip_all"]
     ports:
-      - "27017:27017"
+      - "127.0.0.1:${MONGO_HOST_PORT:-27019}:27017"
     volumes:
-      - ./db/mongo-init:/docker-entrypoint-initdb.d:ro
+      - mongo-data:/data/db
     healthcheck:
-      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      test: ["CMD", "mongosh", "--quiet", "--eval", "quit(db.hello().isWritablePrimary ? 0 : 1)"]
       interval: 3s
       timeout: 5s
       retries: 20
@@ -46,8 +45,32 @@ services:
     image: mongo:7
     depends_on:
       mongo:
-        condition: service_healthy
+        condition: service_started
     restart: "no"
-    entrypoint: >
-      mongosh --host mongo --quiet --eval
-      "try { rs.status() } catch (e) { rs.initiate() }"
+    volumes:
+      - ./db/mongo-init:/bootstrap:ro
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        attempt=0
+        until mongosh --host mongo --quiet --eval "quit(db.adminCommand('ping').ok === 1 ? 0 : 1)"; do
+          attempt=$$((attempt + 1))
+          if [ "$$attempt" -ge 60 ]; then echo "Mongo não ficou pronto" >&2; exit 1; fi
+          sleep 1
+        done
+        mongosh --host mongo --quiet --eval 'try { rs.conf() } catch (e) { if (e.codeName !== "NotYetInitialized") throw e; rs.initiate({_id: "rs0", members: [{_id: 0, host: "mongo:27017"}]}) }'
+        attempt=0
+        until mongosh --host mongo --quiet --eval "quit(db.hello().isWritablePrimary ? 0 : 1)"; do
+          attempt=$$((attempt + 1))
+          if [ "$$attempt" -ge 60 ]; then echo "Mongo não elegeu um primário" >&2; exit 1; fi
+          sleep 1
+        done
+        if mongosh --host mongo --quiet --eval 'quit(db.getSiblingDB("db_delta_telemetry").getCollectionNames().length || db.getSiblingDB("db_delta_app").getCollectionNames().length ? 0 : 1)'; then
+          echo "Dados locais existentes: seed não será reaplicado"
+        else
+          mongosh --host mongo --quiet --file /bootstrap/seed.js
+        fi
+
+volumes:
+  postgres-data:
+  mongo-data:
