@@ -1,5 +1,5 @@
-# Dependências só de desenvolvimento/teste.
-# Instale junto com requirements.txt:  pip install -r requirements.txt -r requirements-dev.txt
 -r requirements.txt
 
-pytest
+# Dependências só de desenvolvimento/teste.
+pytest>=8.0,<9.0
+coverage>=7.0,<8.0
