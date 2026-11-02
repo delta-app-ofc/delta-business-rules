@@ -1,4 +1,27 @@
-# delta-business-rules
+Delta | Regras de negócio determinísticas
+
+![Python](https://img.shields.io/badge/lógica-Python-3776AB?logo=python&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/dados-PostgreSQL-4169E1?logo=postgresql&logoColor=white) ![MongoDB](https://img.shields.io/badge/eventos-MongoDB-47A248?logo=mongodb&logoColor=white)
+
+Regras determinísticas do Projeto Delta — cálculos e processos de negócio sobre dados do PostgreSQL e MongoDB, mantidos em um módulo independente do chatbot e dos esquemas de banco.
+
+**Tags:** `#Delta` `#RegrasDeNegócio` `#Python` `#PostgreSQL` `#MongoDB` `#Determinístico`
+
+## Sumário
+
+- [Visão geral](#visão-geral)
+- [Ambiente local](#ambiente-local-de-desenvolvimento)
+- [Testes](#testes)
+- [Detecção de vazamento](#motor-de-detecção-de-vazamento-detection)
+- [Infraestrutura compartilhada](#core)
+
+## Visão geral
+
+| Finalidade | Implementar regras de negócio determinísticas sem decisão por IA generativa. |
+| Componentes | Motor de detecção de vazamentos em `detection/` e infraestrutura compartilhada em `core/`. |
+| Integrações | Acesso a PostgreSQL e MongoDB; o motor de detecção usa MongoDB Change Streams. |
+| Testes | O README existente documenta uma suíte pytest pura, sem bancos em execução. |
+
+---
 
 Regras de negócio do Projeto Delta que não precisam de IA generativa — cálculos
 e processos determinísticos sobre os dados do PostgreSQL/MongoDB, mantidos à
