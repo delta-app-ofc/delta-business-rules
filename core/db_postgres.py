@@ -47,9 +47,8 @@ def get_user_property_id(user_id: int) -> int | None:
 
 def get_property_classification(user_id: int) -> str | None:
     """Classificação (RESIDENCIAL/COMERCIAL) da (primeira) propriedade do
-    usuário, ou None se ele não tiver propriedade. Usada pelo motor de
-    detecção (detection/) para não aplicar a regra de madrugada a
-    propriedades comerciais/industriais.
+    usuário, ou None se ele não tiver propriedade. Disponível para consultas
+    determinísticas de perfil residencial ou comercial/industrial.
     """
     property_id = get_user_property_id(user_id)
     if property_id is None:

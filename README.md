@@ -21,17 +21,17 @@ python -m pytest -q
 
 Todos os testes são puros — nenhum depende de Postgres/Mongo rodando.
 
-## Motor de detecção de vazamento (`detection/`)
+## Detecção na API Mongo
 
-Migrado do `delta-artificial-intelligence`: calcula `anomaly_detected` em
-`consumption_summary` e cria alertas em `alerts_history`, reagindo quase em
-tempo real a novas janelas de consumo via MongoDB Change Streams. Não usa
-LLM — só regras explicáveis (fluxo contínuo, consumo de madrugada, desvio da
-baseline estatística por usuário/hora). Detalhe completo em
-[`detection/README.md`](detection/README.md).
+O detector passa a pertencer ao `delta-api-mongo` (Java), acionado pela gravação
+de telemetria, com evidências em `consumption_summary` e `alerts_history`.
+Os casos reaproveitáveis do Python estão exportados nas fixtures JSON do detector Java.
+O LeakAgent lê os resultados; tarifas permanecem neste repositório em `update_tariffs/`.
 
-O `LeakAgent` do `delta-artificial-intelligence` só lê o que este motor já
-calculou — nunca decide um limiar sozinho.
+Esta remoção deve ser integrada somente após validar o detector Java em produção
+com ingestão, baseline e alertas persistidos. A branch de migração não comprova esse cutover.
+O procedimento e a ordem entre repositórios ficam no
+[delta-handbook](https://github.com/delta-app-ofc/delta-handbook/blob/docs/deteccao-anomalias-ia/IA/deteccao-anomalias.md).
 
 ## `core/`
 

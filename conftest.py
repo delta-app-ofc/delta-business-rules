@@ -1,6 +1,6 @@
 """Bootstrap de path para os testes.
 
-Garante que a raiz do repositório esteja em sys.path para import detection.*/
+Garante que a raiz do repositório esteja em sys.path para import core e update_tariffs.
 core.* funcionar mesmo com pytest chamado diretamente (sem python -m pytest).
 """
 

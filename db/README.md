@@ -27,4 +27,4 @@ re-sincronizadas (não edite-as à mão).
 
 Mesmo seed de teste usado lá (usuários 11–15), reaproveitado aqui pra ter um
 ambiente de dev local com cenários realistas (incl. um de vazamento contínuo
-de madrugada, útil pra testar `detection/watcher.py` manualmente).
+de madrugada, disponível para consultas locais de telemetria).

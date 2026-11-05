@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "reports"
 COVERAGE_DATA = REPORTS / ".coverage"
 PYTEST_TEMP = REPORTS / ".pytest-tmp"
-SOURCE = "core,detection,update_tariffs"
+SOURCE = "core,update_tariffs"
 
 
 def _run_coverage(*arguments: str) -> int:

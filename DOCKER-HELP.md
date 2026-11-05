@@ -30,4 +30,6 @@ Para diagnosticar falhas de um serviço Compose, use `docker compose -p <projeto
 
 `down` preserva volumes nomeados. Só use `down -v` depois de conferir o nome do projeto e confirmar que seus dados são descartáveis. Não remova volumes de outros ambientes.
 
-O seed do Mongo só é aplicado depois da eleição do primário e se os databases locais de app e telemetria ainda não tiverem coleções. Se houver dados locais, o seed é ignorado para preservá-los.
+O Mongo local é standalone. Se precisar dos dados de exemplo em um ambiente vazio,
+aplique manualmente `db/mongo-init/seed.js` com mongosh. Não é necessário replica set
+nem Change Stream para os módulos restantes.
